@@ -1,0 +1,67 @@
+{
+    "name": "fawzy/laravel-roles-permissions",
+    "description": "A powerful, flexible, and easy-to-use roles and permissions package for Laravel applications with built-in API support",
+    "keywords": [
+        "laravel",
+        "roles",
+        "permissions",
+        "authorization",
+        "acl",
+        "rbac",
+        "access-control",
+        "security",
+        "api"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Fawzy",
+            "email": "01ahmedfawzy23@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/ahmedfawzy23/laravel-roles-permissions",
+    "support": {
+        "issues": "https://github.com/ahmedfawzy23/laravel-roles-permissions/issues",
+        "source": "https://github.com/ahmedfawzy23/laravel-roles-permissions",
+        "docs": "https://github.com/ahmedfawzy23/laravel-roles-permissions/README.md"
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "illuminate/database": "^10.0|^11.0",
+        "illuminate/routing": "^10.0|^11.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0",
+        "mockery/mockery": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fawzy\\RolesPermissions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fawzy\\RolesPermissions\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fawzy\\RolesPermissions\\Providers\\RolesPermissionsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
