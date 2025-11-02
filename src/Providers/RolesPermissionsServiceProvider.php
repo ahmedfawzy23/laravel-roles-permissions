@@ -25,6 +25,9 @@ class RolesPermissionsServiceProvider extends ServiceProvider
         // Load API routes
         $this->loadRoutesFrom(__DIR__.'/../routes/roles-permissions.php');
 
+        // Load Postman collection
+        $this->loadPostmanCollection(__DIR__.'/../postman/roles-permissions.postman_collection.json');
+
         $this->publishes([
             __DIR__.'/../config/roles-permissions.php' => config_path('roles-permissions.php'),
         ], 'roles-permissions-config');
@@ -37,6 +40,18 @@ class RolesPermissionsServiceProvider extends ServiceProvider
             __DIR__.'/../routes/roles-permissions.php' => base_path('routes/roles-permissions.php'),
         ], 'roles-permissions-routes');
 
+        $this->publishes([
+            __DIR__.'/../database/factories' => database_path('factories'),
+        ], 'roles-permissions-factories');
+
+        $this->publishes([
+            __DIR__.'/../database/seeders' => database_path('seeders'),
+        ], 'roles-permissions-seeders');
+
+        // Optional: publish Postman collection (no tag specified previously)
+        $this->publishes([
+            __DIR__.'/../postman/roles-permissions.postman_collection.json' => base_path('postman/roles-permissions.postman_collection.json'),
+        ], 'permissions-postman');
         // Register middleware
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('role', RoleMiddleware::class);

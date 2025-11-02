@@ -4,9 +4,12 @@ namespace Fawzy\RolesPermissions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['name', 'slug', 'description'];
 
     public function permissions(): BelongsToMany
@@ -45,5 +48,10 @@ class Role extends Model
             return Permission::where('slug', $permission)->firstOrFail();
         }
         return $permission;
+    }
+
+    protected static function newFactory()
+    {
+        return \Fawzy\RolesPermissions\Database\Factories\RoleFactory::new();
     }
 }

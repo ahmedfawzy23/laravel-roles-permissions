@@ -80,6 +80,15 @@ php artisan vendor:publish --tag=roles-permissions-migrations
 
 # Publish routes only
 php artisan vendor:publish --tag=roles-permissions-routes
+
+# Publish Postman Collection only
+php artisan vendor:publish --tag=permissions-postman
+
+# Publish factories only
+php artisan vendor:publish --tag=roles-permissions-factories
+
+# Publish seeders only
+php artisan vendor:publish --tag=roles-permissions-seeders
 ```
 
 Run the migrations:
@@ -477,6 +486,26 @@ return [
 ```
 
 ### Seeding Roles and Permissions
+
+You can use the built-in seeder or publish it to customize.
+
+Run built-in seeder directly:
+
+```bash
+php artisan db:seed --class="Fawzy\\RolesPermissions\\Database\\Seeders\\RolesPermissionsSeeder"
+```
+
+Or publish the seeder to your application and customize it:
+
+```bash
+php artisan vendor:publish --tag=roles-permissions-seeders
+```
+
+Factories are also publishable if you want to tweak how sample data is generated:
+
+```bash
+php artisan vendor:publish --tag=roles-permissions-factories
+```
 
 Create a seeder:
 
