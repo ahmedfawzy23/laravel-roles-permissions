@@ -77,6 +77,9 @@ php artisan vendor:publish --tag=roles-permissions-config
 
 # Publish migrations only
 php artisan vendor:publish --tag=roles-permissions-migrations
+
+# Publish routes only
+php artisan vendor:publish --tag=roles-permissions-routes
 ```
 
 Run the migrations:
@@ -291,10 +294,10 @@ The package includes RESTful API endpoints for managing roles and permissions:
 
 ```bash
 # Get all roles
-GET /api/roles-permissions/roles
+GET /roles-permissions/roles-permissions/roles
 
 # Create role
-POST /api/roles-permissions/roles
+POST /roles-permissions/roles-permissions/roles
 {
     "name": "Editor",
     "slug": "editor",
@@ -302,26 +305,26 @@ POST /api/roles-permissions/roles
 }
 
 # Get specific role
-GET /api/roles-permissions/roles/{roleId}
+GET /roles-permissions/roles-permissions/roles/{roleId}
 
 # Update role
-PUT /api/roles-permissions/roles/{roleId}
+PUT /roles-permissions/roles-permissions/roles/{roleId}
 {
     "name": "Senior Editor",
     "description": "Senior content editor"
 }
 
 # Delete role
-DELETE /api/roles-permissions/roles/{roleId}
+DELETE /roles-permissions/roles-permissions/roles/{roleId}
 
 # Assign permissions to role
-POST /api/roles-permissions/roles/{roleId}/permissions/assign
+POST /roles-permissions/roles-permissions/roles/{roleId}/permissions/assign
 {
     "permissions": [1, 2, 3]
 }
 
 # Revoke permissions from role
-POST /api/roles-permissions/roles/{roleId}/permissions/revoke
+POST /roles-permissions/roles-permissions/roles/{roleId}/permissions/revoke
 {
     "permissions": [1, 2]
 }
@@ -331,10 +334,10 @@ POST /api/roles-permissions/roles/{roleId}/permissions/revoke
 
 ```bash
 # Get all permissions
-GET /api/roles-permissions/permissions
+GET /roles-permissions/roles-permissions/permissions
 
 # Create permission
-POST /api/roles-permissions/permissions
+POST /roles-permissions/roles-permissions/permissions
 {
     "name": "Delete Posts",
     "slug": "delete-posts",
@@ -342,63 +345,63 @@ POST /api/roles-permissions/permissions
 }
 
 # Get specific permission
-GET /api/roles-permissions/permissions/{permissionId}
+GET /roles-permissions/roles-permissions/permissions/{permissionId}
 
 # Update permission
-PUT /api/roles-permissions/permissions/{permissionId}
+PUT /roles-permissions/roles-permissions/permissions/{permissionId}
 {
     "name": "Delete All Posts",
     "description": "Can delete any post"
 }
 
 # Delete permission
-DELETE /api/roles-permissions/permissions/{permissionId}
+DELETE /roles-permissions/roles-permissions/permissions/{permissionId}
 ```
 
 #### User Roles & Permissions
 
 ```bash
 # Get user roles
-GET /api/roles-permissions/users/{userId}/roles
+GET /roles-permissions/roles-permissions/users/{userId}/roles
 
 # Assign roles to user
-POST /api/roles-permissions/users/{userId}/roles/assign
+POST /roles-permissions/roles-permissions/users/{userId}/roles/assign
 {
     "roles": [1, 2]
 }
 
 # Remove roles from user
-POST /api/roles-permissions/users/{userId}/roles/remove
+POST /roles-permissions/roles-permissions/users/{userId}/roles/remove
 {
     "roles": [1]
 }
 
 # Sync user roles
-POST /api/roles-permissions/users/{userId}/roles/sync
+POST /roles-permissions/roles-permissions/users/{userId}/roles/sync
 {
     "roles": [2, 3]
 }
 
 # Check if user has role
-GET /api/roles-permissions/users/{userId}/roles/check/{roleSlug}
+GET /roles-permissions/roles-permissions/users/{userId}/roles/check/{roleSlug}
 
 # Get user permissions
-GET /api/roles-permissions/users/{userId}/permissions
+GET /roles-permissions/roles-permissions/users/{userId}/permissions
 
 # Assign permissions to user
-POST /api/roles-permissions/users/{userId}/permissions/assign
+POST /roles-permissions/roles-permissions/users/{userId}/permissions/assign
 {
     "permissions": [1, 2, 3]
 }
 
 # Revoke permissions from user
-POST /api/roles-permissions/users/{userId}/permissions/revoke
+POST /roles-permissions/roles-permissions/users/{userId}/permissions/revoke
 {
     "permissions": [1]
 }
 
 # Check if user has permission
-GET /api/roles-permissions/users/{userId}/permissions/check/{permissionSlug}
+GET /roles-permissions/roles-permissions/users/{userId}/permissions/check/{permissionSlug}
 ```
 
 #### API Response Format
@@ -433,9 +436,9 @@ You can protect API routes using middleware:
 
 ```php
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    Route::post('/api/roles-permissions/roles', [RoleController::class, 'store']);
-    Route::put('/api/roles-permissions/roles/{role}', [RoleController::class, 'update']);
-    Route::delete('/api/roles-permissions/roles/{role}', [RoleController::class, 'destroy']);
+    Route::post('/roles-permissions/roles-permissions/roles', [RoleController::class, 'store']);
+    Route::put('/roles-permissions/roles-permissions/roles/{role}', [RoleController::class, 'update']);
+    Route::delete('/roles-permissions/roles-permissions/roles/{role}', [RoleController::class, 'destroy']);
 });
 ```
 
@@ -916,7 +919,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 ```javascript
 // Login and get token
-fetch('/api/login', {
+fetch('/roles-permissions/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -931,7 +934,7 @@ fetch('/api/login', {
     const token = data.token;
     
     // Use token for authenticated requests
-    fetch('/api/roles-permissions/roles', {
+    fetch('/roles-permissions/roles-permissions/roles', {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',

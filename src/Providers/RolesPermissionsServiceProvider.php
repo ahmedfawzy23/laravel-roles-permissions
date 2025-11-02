@@ -23,7 +23,7 @@ class RolesPermissionsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         
         // Load API routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/roles-permissions.php');
 
         $this->publishes([
             __DIR__.'/../config/roles-permissions.php' => config_path('roles-permissions.php'),
@@ -32,6 +32,10 @@ class RolesPermissionsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
         ], 'roles-permissions-migrations');
+
+        $this->publishes([
+            __DIR__.'/../routes/roles-permissions.php' => base_path('routes/roles-permissions.php'),
+        ], 'roles-permissions-routes');
 
         // Register middleware
         $router = $this->app->make(Router::class);
