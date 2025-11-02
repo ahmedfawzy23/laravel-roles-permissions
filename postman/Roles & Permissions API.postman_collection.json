@@ -1,0 +1,743 @@
+{
+	"info": {
+		"_postman_id": "a71ad0d1-dc02-4eca-a3cb-8217def12325",
+		"name": "Roles & Permissions API",
+		"description": "Postman collection for routes defined in src/routes/roles-permissions.php.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40875745",
+		"_collection_link": "https://universal-crater-750302.postman.co/workspace/Digital-Bond~a54c4207-d4f1-48d4-8da6-7b84aef09556/collection/40875745-a71ad0d1-dc02-4eca-a3cb-8217def12325?action=share&source=collection_link&creator=40875745"
+	},
+	"item": [
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "List Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Admin\",\n  \"slug\": \"admin\",\n  \"description\": \"Administrator role\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Manager\",\n  \"description\": \"Updated description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles/9",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Permissions to Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"permissions\": [1, 2, 3, 4]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles/1/permissions/assign",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles",
+								"1",
+								"permissions",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke Permissions from Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"permissions\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/roles/1/permissions/revoke",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"roles",
+								"1",
+								"permissions",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions",
+			"item": [
+				{
+					"name": "List Permissions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"permissions\": [1, 2]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/permissions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Edit Posts\",\n  \"slug\": \"edit-posts\",\n  \"description\": \"Can edit posts\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/permissions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Permission",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Edit Posts\",\n  \"slug\": \"edit-posts\",\n  \"description\": \"Can edit posts\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/permissions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"permissions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Permission",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Edit Articles\",\n  \"description\": \"Updated description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/permissions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"permissions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Permission",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/{{api_prefix}}/permissions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"permissions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Roles",
+					"item": [
+						{
+							"name": "Get User Roles",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/roles",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Assign Roles to User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"roles\": [3,5]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/roles/assign",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"roles",
+										"assign"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Roles from User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"roles\": [3]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/roles/remove",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"roles",
+										"remove"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sync User Roles",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"roles\": [1, 2, 3, 8]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/roles/sync",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"roles",
+										"sync"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check User Role",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/roles/check/5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"roles",
+										"check",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Permissions",
+					"item": [
+						{
+							"name": "Get User Permissions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/permissions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"permissions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Assign Permissions to User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"permissions\": [3, 7]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/permissions/assign",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"permissions",
+										"assign"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revoke Permissions from User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"permissions\": [7]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/permissions/revoke",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"permissions",
+										"revoke"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check User Permission",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/{{api_prefix}}/users/5/permissions/check/7",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{api_prefix}}",
+										"users",
+										"5",
+										"permissions",
+										"check",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "api_prefix",
+			"value": "/api/roles-permissions",
+			"type": "string"
+		},
+		{
+			"key": "role_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "permission_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "role_value",
+			"value": "admin",
+			"type": "string",
+			"description": "Role identifier (e.g., slug or ID)"
+		},
+		{
+			"key": "permission_value",
+			"value": "edit-posts",
+			"type": "string",
+			"description": "Permission identifier (e.g., slug or ID)"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string",
+			"description": "Bearer token if your API is protected"
+		}
+	]
+}

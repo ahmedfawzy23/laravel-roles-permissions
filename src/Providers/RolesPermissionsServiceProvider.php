@@ -47,10 +47,10 @@ class RolesPermissionsServiceProvider extends ServiceProvider
             __DIR__.'/../database/seeders' => database_path('seeders'),
         ], 'roles-permissions-seeders');
 
-        // Optional: publish Postman collection (no tag specified previously)
+        // Publish Postman collection and environments
         $this->publishes([
-            __DIR__.'/../postman/roles-permissions.postman_collection.json' => base_path('postman/roles-permissions.postman_collection.json'),
-        ], 'permissions-postman');
+            __DIR__.'/../postman' => base_path('postman'),
+        ], 'roles-permissions-postman');
         // Register middleware
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('role', RoleMiddleware::class);

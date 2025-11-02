@@ -10,7 +10,7 @@ trait HasRoles
 {
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'user_role');
     }
 
     public function permissions(): BelongsToMany
@@ -97,7 +97,7 @@ trait HasRoles
     public function hasPermissionViaRole(Permission|string $permission): bool
     {
         $permission = $this->getPermissionInstance($permission);
-        
+
         return $this->roles->flatMap(function ($role) {
             return $role->permissions;
         })->contains('id', $permission->id);
@@ -126,7 +126,7 @@ trait HasRoles
     public function getAllPermissions()
     {
         $directPermissions = $this->permissions;
-        
+
         $rolePermissions = $this->roles->flatMap(function ($role) {
             return $role->permissions;
         });
@@ -139,15 +139,18 @@ trait HasRoles
         if (is_array($roles)) {
             return collect($roles)->map(fn($role) => $this->getRoleInstance($role));
         }
-        
+
         return collect([$this->getRoleInstance($roles)]);
     }
 
     protected function getRoleInstance(Role|string $role): Role
     {
-        if (is_string($role)) {
+        if (is_string($role) && !is_numeric($role)) {
             return Role::where('slug', $role)->firstOrFail();
+        } elseif (is_numeric($role)) {
+            return Role::findOrFail($role);
         }
+
         return $role;
     }
 
@@ -156,14 +159,16 @@ trait HasRoles
         if (is_array($permissions)) {
             return collect($permissions)->map(fn($perm) => $this->getPermissionInstance($perm));
         }
-        
+
         return collect([$this->getPermissionInstance($permissions)]);
     }
 
     protected function getPermissionInstance(Permission|string $permission): Permission
     {
-        if (is_string($permission)) {
+        if (is_string($permission) && !is_numeric($permission)) {
             return Permission::where('slug', $permission)->firstOrFail();
+        } elseif (is_numeric($permission)) {
+            return Permission::findOrFail($permission);
         }
         return $permission;
     }

@@ -14,12 +14,12 @@ class Role extends Model
 
     public function permissions(): BelongsToMany
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class, 'role_permission');
     }
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(config('auth.providers.users.model'));
+        return $this->belongsToMany(config('auth.providers.users.model'), 'user_role');
     }
 
     public function givePermissionTo(Permission|string $permission): self
