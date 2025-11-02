@@ -63,13 +63,13 @@ Install the package via Composer:
 composer require fawzy/roles-permissions
 ```
 
-Publish the configuration and migration files:
+Publish all package assets (config, migrations, routes, factories, seeders, Postman collection):
 
 ```bash
 php artisan vendor:publish --provider="Fawzy\RolesPermissions\Providers\RolesPermissionsServiceProvider"
 ```
 
-Or publish specific files:
+Or publish specific assets by tag:
 
 ```bash
 # Publish config only

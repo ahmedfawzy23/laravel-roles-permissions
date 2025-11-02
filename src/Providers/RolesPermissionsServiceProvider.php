@@ -25,8 +25,7 @@ class RolesPermissionsServiceProvider extends ServiceProvider
         // Load API routes
         $this->loadRoutesFrom(__DIR__.'/../routes/roles-permissions.php');
 
-        // Load Postman collection
-        $this->loadPostmanFrom(__DIR__.'/../postman/roles-permissions.postman_collection.json');
+        // Postman collection is publish-only; no runtime loading required.
 
         $this->publishes([
             __DIR__.'/../config/roles-permissions.php' => config_path('roles-permissions.php'),
